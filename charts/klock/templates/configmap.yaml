@@ -15,4 +15,4 @@ data:
 kind: ConfigMap
 metadata:
   name: klock-manager-config
-  namespace: klock-system
+  namespace: {{ .Values.namespace.name }}

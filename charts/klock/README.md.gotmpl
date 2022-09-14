@@ -1,0 +1,23 @@
+# PromLens
+
+{{ template "chart.deprecationWarning" . }}
+
+{{ template "chart.versionBadge" . }}{{ template "chart.typeBadge" . }}{{ template "chart.appVersionBadge" . }}
+
+This chart installs [Klock](https://github.com/robert-nemet/klock).
+
+Klock provides locks for Kubernetes.
+
+## Helm Chart
+
+### How To Install
+
+Simply add this Chart repository to Helm:
+
+```sh
+➜ helm repo add rnemet https://rnemet.dev/helm-charts
+```
+
+{{ template "chart.valuesSection" . }}
+
+{{ template "chart.sourcesSection" . }}

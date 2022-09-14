@@ -10,7 +10,7 @@ webhooks:
   clientConfig:
     service:
       name: klock-webhook-service
-      namespace: klock-system
+      namespace: {{ .Values.namespace.name }}
       path: /validate-all
   failurePolicy: Fail
   name: klocks.rnemet.dev
@@ -20,11 +20,7 @@ webhooks:
     apiVersions:
     - '*'
     operations:
-    - DELETE
-    - UPDATE
+{{ toYaml .Values.config.operations | indent 4}}
     resources:
-    - pods
-    - deployments
-    - secrets
-    - configmaps
+{{ toYaml .Values.config.resources | indent 4}}
   sideEffects: None

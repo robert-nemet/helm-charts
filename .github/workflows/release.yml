@@ -32,3 +32,10 @@ jobs:
         uses: helm/chart-releaser-action@v1.4.0
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Helm Chart Docs Github Pages
+        uses: omegion/helm-charts-docs@v0.15
+        with:
+          helmRepository: rnemet
+          helmRepositoryUrl: https://rnemet.dev/helm-charts
+          token: ${{ secrets.GITHUB_TOKEN }}

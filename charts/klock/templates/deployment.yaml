@@ -2,21 +2,37 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    control-plane: controller-manager
+    {{ .Values.label | toYaml }}
   name: klock-controller-manager
-  namespace: klock-system
+  namespace: {{ .Values.namespace.name }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      control-plane: controller-manager
+      {{ .Values.label | toYaml }}
   template:
     metadata:
       annotations:
         kubectl.kubernetes.io/default-container: manager
       labels:
-        control-plane: controller-manager
+        {{ .Values.label | toYaml }}
     spec:
+    {{- if .Values.imagePullSecrets }}
+      imagePullSecrets:
+{{ toYaml .Values.imagePullSecrets | indent 8 }}
+    {{- end }}
+    {{- if .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml .Values.nodeSelector | indent 8 }}
+    {{- end }}
+    {{- if .Values.tolerations }}
+      tolerations:
+{{ toYaml .Values.tolerations | indent 8 }}
+    {{- end }}
+    {{- if .Values.affinity }}
+      affinity:
+{{ toYaml .Values.affinity | indent 8 }}
+    {{- end }}
       containers:
       - args:
         - --secure-listen-address=0.0.0.0:8443
@@ -24,25 +40,22 @@ spec:
         - --logtostderr=true
         - --v=0
         image: gcr.io/kubebuilder/kube-rbac-proxy:v0.11.0
+        imagePullPolicy: "{{ .Values.image.pullPolicy }}"
         name: kube-rbac-proxy
         ports:
         - containerPort: 8443
           name: https
           protocol: TCP
         resources:
-          limits:
-            cpu: 500m
-            memory: 128Mi
-          requests:
-            cpu: 5m
-            memory: 64Mi
+{{ toYaml .Values.resources | indent 10 }}
       - args:
         - --health-probe-bind-address=:8081
         - --metrics-bind-address=127.0.0.1:8080
         - --leader-elect
         command:
         - /manager
-        image: devopps/pod-validationwebhook:v1
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: "{{ .Values.image.pullPolicy }}"
         livenessProbe:
           httpGet:
             path: /healthz
