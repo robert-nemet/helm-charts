@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    {{ .Values.selectors | toYaml }}
+    {{ .Values.label | toYaml }}
   name: klock-controller-manager-metrics-service
   namespace: {{ .Values.namespace.name }}
 spec:
@@ -12,7 +12,7 @@ spec:
     protocol: TCP
     targetPort: https
   selector:
-    {{ .Values.selectors | toYaml }}
+    {{ .Values.label | toYaml }}
 ---
 apiVersion: v1
 kind: Service
@@ -25,4 +25,4 @@ spec:
     protocol: TCP
     targetPort: 9443
   selector:
-    {{ .Values.selectors | toYaml }}
+    {{ .Values.label | toYaml }}

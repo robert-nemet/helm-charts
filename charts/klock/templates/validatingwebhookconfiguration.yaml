@@ -20,11 +20,7 @@ webhooks:
     apiVersions:
     - '*'
     operations:
-    - DELETE
-    - UPDATE
+{{ toYaml .Values.config.operations | indent 4}}
     resources:
-    - pods
-    - deployments
-    - secrets
-    - configmaps
+{{ toYaml .Values.config.resources | indent 4}}
   sideEffects: None
