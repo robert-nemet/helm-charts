@@ -1,0 +1,25 @@
+# PromLens
+
+{{ template "chart.deprecationWarning" . }}
+
+{{ template "chart.versionBadge" . }}{{ template "chart.typeBadge" . }}{{ template "chart.appVersionBadge" . }}
+
+This chart installs [Klock](https://promlens.com/).
+
+PromLens is a tool that makes learning and using PromQL easier and more productive. It integrates a visual query builder with explanation and visualization features.
+
+## Helm Chart
+
+This is an initial release, based on the Helm chart we are using to deploy the tool internally. Currently, there are multiple features of PromLens that this Chart doesn't provide. If something is missing, feel free to open and issue or submit a Pull Request.
+
+### How To Install
+
+Simply add this Chart repository to Helm:
+
+```sh
+➜ helm repo add rnemet https://rnemet.dev/helm-charts
+```
+
+{{ template "chart.valuesSection" . }}
+
+{{ template "chart.sourcesSection" . }}
