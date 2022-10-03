@@ -3,6 +3,17 @@ entries:
   klock:
   - apiVersion: v2
     appVersion: 2.0.0
+    created: "2022-10-03T19:49:15.270359767Z"
+    description: A Helm chart for Kubernetes. Klock provides locking mechanics for
+      k8s resources.
+    digest: d46084d1dc2a7fcf6f51c71dac5240392c206e3bc87a0fe2355cd40037d35a75
+    name: klock
+    type: application
+    urls:
+    - https://github.com/robert-nemet/helm-charts/releases/download/klock-1.0.1/klock-1.0.1.tgz
+    version: 1.0.1
+  - apiVersion: v2
+    appVersion: 2.0.0
     created: "2022-09-14T17:31:27.992035357Z"
     description: A Helm chart for Kubernetes. Klock provides locking mechanics for
       k8s resources.
@@ -22,4 +33,4 @@ entries:
     urls:
     - https://github.com/robert-nemet/helm-charts/releases/download/klock-0.1.0/klock-0.1.0.tgz
     version: 0.1.0
-generated: "2022-09-14T17:31:27.992047158Z"
+generated: "2022-10-03T19:49:15.270382467Z"
